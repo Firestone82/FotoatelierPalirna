@@ -5,7 +5,11 @@ import { NgClass } from '@angular/common';
   selector: 'app-lazy-image',
   imports: [NgClass],
   template: `
-    <div class="lazy-img-wrapper" [class]="wrapperClass">
+    <div
+      class="lazy-img-wrapper"
+      [class]="wrapperClass"
+      [style.aspect-ratio]="aspectRatio || null"
+    >
       <div class="lazy-img-placeholder" [class.hidden]="loaded()"></div>
       <img
         [src]="loaded() ? src : ''"
@@ -23,6 +27,7 @@ export class LazyImageComponent implements AfterViewInit {
   @Input() src = '';
   @Input() alt = '';
   @Input() wrapperClass = '';
+  @Input() aspectRatio = '';
 
   loaded = signal(false);
   private el = inject(ElementRef);

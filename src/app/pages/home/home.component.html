@@ -80,21 +80,33 @@
         Vybrané <em class="text-accent-italic">práce</em>.
       </h2>
     </div>
-    <div class="gallery-preview__grid">
-      @for (img of galleryImages; track img.src; let i = $index) {
-        <div class="gallery-preview__item reveal" [style.transition-delay]="(i * 0.08) + 's'">
+
+    <div class="gallery-masonry">
+      @for (img of visibleImages(); track img.src; let i = $index) {
+        <div class="gallery-masonry__item">
           <app-lazy-image
             [src]="img.src"
             [alt]="img.alt"
-            wrapperClass="gallery-preview__img-wrap"
+            [aspectRatio]="img.aspectRatio"
+            wrapperClass="gallery-masonry__img-wrap"
           ></app-lazy-image>
-          <span class="gallery-preview__cat">{{ img.category }}</span>
+          <span class="gallery-masonry__cat">{{ img.category }}</span>
         </div>
       }
     </div>
-    <div class="gallery-preview__cta reveal">
-      <a routerLink="/portfolio" class="btn-outline">Celé portfolio →</a>
+
+    <div #gallerySentinel class="gallery-sentinel">
+      @if (hasMore()) {
+        <div class="gallery-loader">
+          <span></span><span></span><span></span>
+        </div>
+      } @else {
+        <div class="gallery-preview__cta">
+          <a routerLink="/portfolio" class="btn-outline">Celé portfolio →</a>
+        </div>
+      }
     </div>
+
   </div>
 </section>
 
