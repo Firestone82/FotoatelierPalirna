@@ -21,7 +21,7 @@ const ALL_GALLERY_IMAGES = [
   { src: 'https://images.unsplash.com/photo-1617897903246-719242758050?w=800&q=80', alt: 'Produkt 3', category: 'Produkt', aspectRatio: '4/5' },
 ];
 
-const INITIAL_COUNT = 8;
+const INITIAL_COUNT = 6;
 const LOAD_MORE_COUNT = 4;
 
 @Component({

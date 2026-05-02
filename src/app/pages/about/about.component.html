@@ -100,6 +100,28 @@
     </div>
   </section>
 
+  <!-- Gear -->
+  <section class="about-gear section-padding">
+    <div class="container-main">
+      <div class="about-gear__header reveal">
+        <span class="section-label">Výbava</span>
+        <h2>Čím <em class="text-accent-italic">fotím</em>.</h2>
+      </div>
+      <div class="about-gear__grid">
+        @for (group of gear; track group.category; let i = $index) {
+          <div class="about-gear__group reveal" [style.transition-delay]="(i * 0.1) + 's'">
+            <h3 class="about-gear__cat">{{ group.category }}</h3>
+            <ul class="about-gear__list">
+              @for (item of group.items; track item) {
+                <li>{{ item }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="about-cta section-padding">
     <div class="container-main">
