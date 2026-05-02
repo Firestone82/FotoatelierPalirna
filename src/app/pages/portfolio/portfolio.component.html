@@ -34,15 +34,16 @@
     </div>
   </div>
 
-  <!-- Grid -->
+  <!-- Masonry grid -->
   <section class="portfolio-grid-section">
     <div class="container-main">
-      <div class="portfolio-grid">
-        @for (photo of filteredPhotos(); track photo.src; let i = $index) {
-          <div class="portfolio-item reveal" [style.transition-delay]="(i % 6 * 0.07) + 's'">
+      <div class="portfolio-masonry">
+        @for (photo of filteredPhotos(); track photo.src) {
+          <div class="portfolio-item">
             <app-lazy-image
               [src]="photo.src"
               [alt]="photo.alt"
+              [aspectRatio]="photo.aspectRatio"
               wrapperClass="portfolio-item__img"
             ></app-lazy-image>
             <div class="portfolio-item__overlay">

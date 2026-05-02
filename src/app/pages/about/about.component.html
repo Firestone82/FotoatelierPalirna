@@ -24,7 +24,7 @@
         <!-- Image -->
         <div class="about-main__photo reveal-left">
           <app-lazy-image
-            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"
+            src="https://picsum.photos/seed/photographer/400/560"
             alt="Tereza Holubová"
             wrapperClass="about-main__img"
           ></app-lazy-image>
@@ -96,6 +96,28 @@
           <h3>Poctivá postprodukce</h3>
           <p>Retušuji s mírou. Chci, aby fotografie vypadaly jako zachycený okamžik, ne jako ilustrace.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gear -->
+  <section class="about-gear section-padding">
+    <div class="container-main">
+      <div class="about-gear__header reveal">
+        <span class="section-label">Výbava</span>
+        <h2>Čím <em class="text-accent-italic">fotím</em>.</h2>
+      </div>
+      <div class="about-gear__grid">
+        @for (group of gear; track group.category; let i = $index) {
+          <div class="about-gear__group reveal" [style.transition-delay]="(i * 0.1) + 's'">
+            <h3 class="about-gear__cat">{{ group.category }}</h3>
+            <ul class="about-gear__list">
+              @for (item of group.items; track item) {
+                <li>{{ item }}</li>
+              }
+            </ul>
+          </div>
+        }
       </div>
     </div>
   </section>

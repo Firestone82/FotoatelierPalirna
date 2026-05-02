@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LazyImageComponent } from '../../shared/components/lazy-image/lazy-image.component';
 
@@ -9,8 +9,6 @@ import { LazyImageComponent } from '../../shared/components/lazy-image/lazy-imag
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements AfterViewInit {
-  @ViewChildren('reveal') revealEls!: QueryList<ElementRef>;
-
   services = [
     { icon: '◎', title: 'Portrét', desc: 'Autentické portréty zachycující osobnost a náladu. Ve studiu i v přírodě.' },
     { icon: '◇', title: 'Svatba', desc: 'Reportážní dokumentace vašeho velkého dne – od příprav po první tanec.' },
@@ -19,23 +17,24 @@ export class HomeComponent implements AfterViewInit {
   ];
 
   galleryImages = [
-    { src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80', alt: 'Portrét', category: 'Portrét' },
-    { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80', alt: 'Svatba', category: 'Svatba' },
-    { src: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=800&q=80', alt: 'Reportáž', category: 'Reportáž' },
-    { src: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80', alt: 'Produkt', category: 'Produkt' },
-    { src: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80', alt: 'Krajina', category: 'Reportáž' },
-    { src: 'https://images.unsplash.com/photo-1616169201999-849843cf88fc?w=800&q=80', alt: 'Portrét 2', category: 'Portrét' },
+    { src: 'https://picsum.photos/seed/gp01/400/600', alt: 'Portrét', category: 'Portrét', aspectRatio: '2/3' },
+    { src: 'https://picsum.photos/seed/gw01/600/400', alt: 'Svatba', category: 'Svatba', aspectRatio: '3/2' },
+    { src: 'https://picsum.photos/seed/gp02/450/600', alt: 'Portrét ženy', category: 'Portrét', aspectRatio: '3/4' },
+    { src: 'https://picsum.photos/seed/gr01/800/450', alt: 'Krajina', category: 'Reportáž', aspectRatio: '16/9' },
+    { src: 'https://picsum.photos/seed/gpd01/600/600', alt: 'Produkt', category: 'Produkt', aspectRatio: '1/1' },
+    { src: 'https://picsum.photos/seed/gp03/400/600', alt: 'Portrét exteriér', category: 'Portrét', aspectRatio: '2/3' },
   ];
 
   ngAfterViewInit() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal, .reveal-left').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal, .reveal-left').forEach(el => {
+      new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 }).observe(el);
+    });
   }
 }
