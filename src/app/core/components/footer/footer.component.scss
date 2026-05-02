@@ -1,7 +1,7 @@
 .footer {
   background: var(--color-text);
   color: rgba(245, 240, 232, 0.7);
-  padding: 64px 0 32px;
+  padding: 32px 0 20px;
 
   &__inner {
     max-width: 1200px;
@@ -13,49 +13,52 @@
   &__top {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding-bottom: 48px;
+    gap: 20px;
+    padding-bottom: 20px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
 
     @media (min-width: 768px) {
       grid-template-columns: 2fr 1fr 1fr;
+      align-items: center;
+      gap: 32px;
     }
   }
 
   &__brand {
     display: flex;
-    gap: 12px;
-    align-items: flex-start;
+    gap: 10px;
+    align-items: center;
   }
 
   &__dot {
     color: var(--color-accent);
-    font-size: 20px;
-    line-height: 1.2;
+    font-size: 18px;
+    line-height: 1;
   }
 
   &__name {
     font-family: var(--font-serif);
-    font-size: 18px;
+    font-size: 16px;
     color: var(--color-bg);
-    margin-bottom: 8px;
+    margin-bottom: 2px;
   }
 
   &__tagline {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   &__nav {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px 20px;
 
     a {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       text-decoration: none;
       color: rgba(245, 240, 232, 0.6);
@@ -66,21 +69,21 @@
   }
 
   &__social-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
+    font-size: 9px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    margin-bottom: 16px;
-    opacity: 0.5;
+    margin-bottom: 8px;
+    color: rgba(245, 240, 232, 0.65);
   }
 
   &__social-links {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: row;
+    gap: 16px;
 
     a {
       font-family: var(--font-serif);
-      font-size: 16px;
+      font-size: 14px;
       text-decoration: none;
       color: rgba(245, 240, 232, 0.6);
       transition: color 0.2s;
@@ -90,14 +93,14 @@
   }
 
   &__bottom {
-    padding-top: 32px;
+    padding-top: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 8px;
-    font-size: 12px;
-    opacity: 0.4;
+    gap: 6px;
+    font-size: 11px;
+    color: rgba(245, 240, 232, 0.6);
 
     a {
       color: inherit;

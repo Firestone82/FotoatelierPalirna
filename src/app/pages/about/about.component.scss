@@ -247,7 +247,7 @@
 .about-cta {
   background: var(--color-text);
 
-  .section-label { color: rgba(245, 240, 232, 0.45); }
+  .section-label { color: rgba(245, 240, 232, 0.65); }
 
   &__inner {
     display: flex;
@@ -283,7 +283,7 @@
     text-decoration: none;
     transition: background 0.2s;
 
-    &:hover { background: #a85539; }
+    &:hover { background: #7a3c24; }
   }
 
   &__btn-outline {

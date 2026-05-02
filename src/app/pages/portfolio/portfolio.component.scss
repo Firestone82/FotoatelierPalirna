@@ -131,6 +131,10 @@
     span { opacity: 1; transform: translateY(0); }
   }
 
+  &:hover ::ng-deep .lazy-img.loaded {
+    transform: scale(1.09) !important;
+  }
+
   &__cat {
     font-size: 10px;
     font-weight: 500;
