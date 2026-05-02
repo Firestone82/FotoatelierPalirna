@@ -1,0 +1,65 @@
+{
+  "packages": [
+    {
+      "name": "Portrét",
+      "price": "2 900",
+      "unit": "Kč / 1 hodina",
+      "desc": "Ideální pro individuální nebo párové portréty.",
+      "items": [
+        "Focení na 1 hodinu",
+        "Výběr z 80+ fotografií",
+        "20 upravených fotek",
+        "Soukromá online galerie",
+        "Licence pro osobní použití"
+      ],
+      "highlight": false
+    },
+    {
+      "name": "Svatba",
+      "price": "18 900",
+      "unit": "Kč / celý den",
+      "desc": "Kompletní dokumentace vašeho velkého dne od rána do noci.",
+      "items": [
+        "Focení 8–10 hodin",
+        "Přípravy + obřad + recepce",
+        "400+ upravených fotek",
+        "Soukromá online galerie",
+        "USB s exportem",
+        "Tisková licence"
+      ],
+      "highlight": true
+    },
+    {
+      "name": "Produkt",
+      "price": "od 4 500",
+      "unit": "Kč / půl den",
+      "desc": "Profesionální fotografie produktů pro web a marketing.",
+      "items": [
+        "Focení 4 hodiny",
+        "Jednoduchý i lifestyle setup",
+        "30 upravených fotek",
+        "Komerční licence",
+        "Rychlé dodání do 5 dní"
+      ],
+      "highlight": false
+    }
+  ],
+  "faq": [
+    {
+      "question": "Jak probíhá rezervace?",
+      "answer": "Po nezávazné konzultaci zašlu smlouvu a zálohovou fakturu ve výši 30 %. Po uhrazení zálohy je termín závazně zarezervován."
+    },
+    {
+      "question": "Kdy dostanu fotografie?",
+      "answer": "Portréty a produkty do 7 pracovních dní. Svatební reportáž do 3 týdnů. Vždy dostanete soukromý odkaz na galerii."
+    },
+    {
+      "question": "Mohu si fotografie vytisknout?",
+      "answer": "Ano. Ke každé zakázce dostanete licenci pro osobní tisk. Pro komerční využití je nutná rozšířená komerční licence."
+    },
+    {
+      "question": "Fotografujete i mimo kraj?",
+      "answer": "Fotografuji i v zahraničí. Cestovné a případné ubytování je účtováno zvlášť dle dohody."
+    }
+  ]
+}

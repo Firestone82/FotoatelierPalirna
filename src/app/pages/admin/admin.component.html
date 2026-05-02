@@ -1,0 +1,297 @@
+<div class="admin-page">
+
+  <!-- Login -->
+  @if (!isLoggedIn()) {
+    <div class="admin-login">
+      <div class="admin-login__box">
+        <h1 class="admin-login__title">Admin</h1>
+        <p class="admin-login__sub">Správa obsahu webu</p>
+        <form (ngSubmit)="login()" class="admin-login__form">
+          <input
+            type="password"
+            [(ngModel)]="passwordInput"
+            name="password"
+            placeholder="Heslo"
+            class="admin-input"
+            autofocus
+          />
+          @if (passwordError()) {
+            <p class="admin-login__error">Nesprávné heslo.</p>
+          }
+          <button type="submit" class="btn-primary">Přihlásit se</button>
+        </form>
+      </div>
+    </div>
+  }
+
+  <!-- Panel -->
+  @if (isLoggedIn()) {
+    <div class="admin-panel">
+
+      <header class="admin-header">
+        <div class="admin-header__left">
+          <span class="admin-header__logo">Admin panel</span>
+          <a href="/" class="admin-header__site-link" target="_blank">↗ Zobrazit web</a>
+        </div>
+        <button (click)="logout()" class="btn-ghost">Odhlásit</button>
+      </header>
+
+      @if (toast()) {
+        <div class="admin-toast">{{ toast() }}</div>
+      }
+
+      <!-- Tabs -->
+      <nav class="admin-tabs">
+        <button [class.active]="activeTab() === 'portfolio'" (click)="activeTab.set('portfolio')">
+          Fotografie portfolia
+        </button>
+        <button [class.active]="activeTab() === 'pricing'" (click)="activeTab.set('pricing')">
+          Cenové balíčky
+        </button>
+        <button [class.active]="activeTab() === 'faq'" (click)="activeTab.set('faq')">
+          Časté dotazy
+        </button>
+      </nav>
+
+      <!-- ===================== PORTFOLIO TAB ===================== -->
+      @if (activeTab() === 'portfolio' && portfolioData) {
+        <section class="admin-section">
+          <div class="admin-section__bar">
+            <h2>Fotografie portfolia</h2>
+            <div class="admin-section__actions">
+              <button (click)="savePortfolio()" class="btn-save">Uložit změny</button>
+              <button (click)="downloadPortfolio()" class="btn-download" title="Stáhnout JSON pro nasazení">Stáhnout JSON</button>
+              <button (click)="resetPortfolio()" class="btn-reset">Obnovit výchozí</button>
+            </div>
+          </div>
+
+          <p class="admin-hint">
+            <strong>Jak přidat vlastní fotografie:</strong> nahrajte fotky na libovolný hosting (Google Drive – sdílet jako veřejný odkaz, Cloudinary, nebo přímo do repozitáře GitHub) a vložte URL níže.
+          </p>
+
+          <!-- Categories -->
+          <div class="admin-block">
+            <h3 class="admin-block__title">Kategorie filtrů</h3>
+            <div class="admin-categories">
+              @for (cat of portfolioData.categories; track $index; let i = $index) {
+                <div class="admin-cat-row">
+                  <input
+                    [(ngModel)]="portfolioData.categories[i]"
+                    [name]="'cat_' + i"
+                    class="admin-input admin-input--sm"
+                  />
+                  <button (click)="deleteCategory(i)" class="btn-icon" title="Smazat">✕</button>
+                </div>
+              }
+              <button (click)="addCategory()" class="btn-add-small">+ Přidat kategorii</button>
+            </div>
+          </div>
+
+          <!-- Photos -->
+          <div class="admin-block">
+            <h3 class="admin-block__title">Fotografie ({{ portfolioData.photos.length }})</h3>
+
+            @for (photo of portfolioData.photos; track $index; let i = $index) {
+              <div class="admin-photo-row">
+                <div class="admin-photo-row__preview">
+                  @if (photo.src) {
+                    <img [src]="photo.src" [alt]="photo.alt" loading="lazy" />
+                  } @else {
+                    <span class="admin-photo-row__placeholder">Bez obrázku</span>
+                  }
+                </div>
+                <div class="admin-photo-row__fields">
+                  <label class="admin-label">URL fotografie</label>
+                  <input
+                    [(ngModel)]="portfolioData.photos[i].src"
+                    [name]="'photo_src_' + i"
+                    class="admin-input"
+                    placeholder="https://..."
+                  />
+                  <label class="admin-label">Popisek (alt text)</label>
+                  <input
+                    [(ngModel)]="portfolioData.photos[i].alt"
+                    [name]="'photo_alt_' + i"
+                    class="admin-input"
+                    placeholder="Popis fotografie"
+                  />
+                  <div class="admin-photo-row__selects">
+                    <div>
+                      <label class="admin-label">Kategorie</label>
+                      <select [(ngModel)]="portfolioData.photos[i].category" [name]="'photo_cat_' + i" class="admin-select">
+                        @for (cat of portfolioData.categories; track cat) {
+                          <option [value]="cat">{{ cat }}</option>
+                        }
+                      </select>
+                    </div>
+                    <div>
+                      <label class="admin-label">Poměr stran</label>
+                      <select [(ngModel)]="portfolioData.photos[i].aspectRatio" [name]="'photo_ar_' + i" class="admin-select">
+                        @for (ar of aspectRatios; track ar.value) {
+                          <option [value]="ar.value">{{ ar.label }}</option>
+                        }
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="admin-photo-row__controls">
+                  <button (click)="movePhoto(i, -1)" [disabled]="i === 0" class="btn-icon" title="Posunout nahoru">↑</button>
+                  <button (click)="movePhoto(i, 1)" [disabled]="i === portfolioData.photos.length - 1" class="btn-icon" title="Posunout dolů">↓</button>
+                  <button (click)="deletePhoto(i)" class="btn-icon btn-icon--danger" title="Smazat">✕</button>
+                </div>
+              </div>
+            }
+
+            <!-- Add photo -->
+            @if (!showAddPhoto) {
+              <button (click)="showAddPhoto = true" class="btn-add">+ Přidat fotografii</button>
+            } @else {
+              <div class="admin-add-photo">
+                <h4>Nová fotografie</h4>
+                <label class="admin-label">URL fotografie *</label>
+                <input [(ngModel)]="newPhoto.src" name="new_src" class="admin-input" placeholder="https://..." />
+                <label class="admin-label">Popisek (alt text) *</label>
+                <input [(ngModel)]="newPhoto.alt" name="new_alt" class="admin-input" placeholder="Popis fotografie" />
+                <div class="admin-photo-row__selects">
+                  <div>
+                    <label class="admin-label">Kategorie</label>
+                    <select [(ngModel)]="newPhoto.category" name="new_cat" class="admin-select">
+                      @for (cat of portfolioData.categories; track cat) {
+                        <option [value]="cat">{{ cat }}</option>
+                      }
+                    </select>
+                  </div>
+                  <div>
+                    <label class="admin-label">Poměr stran</label>
+                    <select [(ngModel)]="newPhoto.aspectRatio" name="new_ar" class="admin-select">
+                      @for (ar of aspectRatios; track ar.value) {
+                        <option [value]="ar.value">{{ ar.label }}</option>
+                      }
+                    </select>
+                  </div>
+                </div>
+                <div class="admin-add-photo__btns">
+                  <button (click)="addPhoto()" class="btn-save">Přidat</button>
+                  <button (click)="showAddPhoto = false" class="btn-ghost">Zrušit</button>
+                </div>
+              </div>
+            }
+          </div>
+        </section>
+      }
+
+      <!-- ===================== PRICING TAB ===================== -->
+      @if (activeTab() === 'pricing' && pricingData) {
+        <section class="admin-section">
+          <div class="admin-section__bar">
+            <h2>Cenové balíčky</h2>
+            <div class="admin-section__actions">
+              <button (click)="savePricing()" class="btn-save">Uložit změny</button>
+              <button (click)="downloadPricing()" class="btn-download" title="Stáhnout JSON pro nasazení">Stáhnout JSON</button>
+              <button (click)="resetPricing()" class="btn-reset">Obnovit výchozí</button>
+            </div>
+          </div>
+
+          @for (pkg of pricingData.packages; track $index; let i = $index) {
+            <div class="admin-package">
+              <div class="admin-package__header">
+                <h3>{{ pkg.name || 'Nový balíček' }}</h3>
+                <button (click)="deletePackage(i)" class="btn-ghost btn-ghost--danger">Smazat</button>
+              </div>
+              <div class="admin-package__fields">
+                <div class="admin-field-grid">
+                  <div>
+                    <label class="admin-label">Název</label>
+                    <input [(ngModel)]="pricingData.packages[i].name" [name]="'pkg_name_' + i" class="admin-input" />
+                  </div>
+                  <div>
+                    <label class="admin-label">Cena</label>
+                    <input [(ngModel)]="pricingData.packages[i].price" [name]="'pkg_price_' + i" class="admin-input" />
+                  </div>
+                  <div>
+                    <label class="admin-label">Jednotka</label>
+                    <input [(ngModel)]="pricingData.packages[i].unit" [name]="'pkg_unit_' + i" class="admin-input" placeholder="Kč / 1 hodina" />
+                  </div>
+                  <div class="admin-checkbox-field">
+                    <label class="admin-label admin-label--checkbox">
+                      <input type="checkbox" [(ngModel)]="pricingData.packages[i].highlight" [name]="'pkg_highlight_' + i" />
+                      Označit jako nejoblíbenější
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <label class="admin-label">Popis</label>
+                  <input [(ngModel)]="pricingData.packages[i].desc" [name]="'pkg_desc_' + i" class="admin-input" />
+                </div>
+                <div>
+                  <label class="admin-label">Položky balíčku</label>
+                  @for (item of pkg.items; track $index; let j = $index) {
+                    <div class="admin-item-row">
+                      <input
+                        [(ngModel)]="pricingData.packages[i].items[j]"
+                        [name]="'pkg_item_' + i + '_' + j"
+                        class="admin-input"
+                        placeholder="Popis položky"
+                      />
+                      <button (click)="removePackageItem(i, j)" class="btn-icon btn-icon--danger" title="Odebrat">✕</button>
+                    </div>
+                  }
+                  <button (click)="addPackageItem(i)" class="btn-add-small">+ Přidat položku</button>
+                </div>
+              </div>
+            </div>
+          }
+
+          <button (click)="addPackage()" class="btn-add">+ Přidat balíček</button>
+        </section>
+      }
+
+      <!-- ===================== FAQ TAB ===================== -->
+      @if (activeTab() === 'faq' && pricingData) {
+        <section class="admin-section">
+          <div class="admin-section__bar">
+            <h2>Časté dotazy</h2>
+            <div class="admin-section__actions">
+              <button (click)="savePricing()" class="btn-save">Uložit změny</button>
+              <button (click)="downloadPricing()" class="btn-download" title="Stáhnout JSON pro nasazení">Stáhnout JSON</button>
+            </div>
+          </div>
+
+          <p class="admin-hint">FAQ je zobrazeno na stránce Ceník. Uložením se změny projeví okamžitě v tomto prohlížeči.</p>
+
+          @for (item of pricingData.faq; track $index; let i = $index) {
+            <div class="admin-faq-item">
+              <div class="admin-faq-item__header">
+                <span class="admin-faq-item__num">Otázka {{ i + 1 }}</span>
+                <div class="admin-faq-item__header-btns">
+                  <button (click)="moveFaq(i, -1)" [disabled]="i === 0" class="btn-icon" title="Posunout nahoru">↑</button>
+                  <button (click)="moveFaq(i, 1)" [disabled]="i === pricingData.faq.length - 1" class="btn-icon" title="Posunout dolů">↓</button>
+                  <button (click)="deleteFaq(i)" class="btn-icon btn-icon--danger" title="Smazat">✕</button>
+                </div>
+              </div>
+              <label class="admin-label">Otázka</label>
+              <input
+                [(ngModel)]="pricingData.faq[i].question"
+                [name]="'faq_q_' + i"
+                class="admin-input"
+                placeholder="Jak probíhá rezervace?"
+              />
+              <label class="admin-label">Odpověď</label>
+              <textarea
+                [(ngModel)]="pricingData.faq[i].answer"
+                [name]="'faq_a_' + i"
+                class="admin-textarea"
+                rows="3"
+                placeholder="Popis odpovědi..."
+              ></textarea>
+            </div>
+          }
+
+          <button (click)="addFaq()" class="btn-add">+ Přidat otázku</button>
+        </section>
+      }
+
+    </div>
+  }
+
+</div>
