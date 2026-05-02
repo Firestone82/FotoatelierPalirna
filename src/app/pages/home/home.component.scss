@@ -406,34 +406,6 @@
   }
 }
 
-/* SENTINEL & LOADER */
-.gallery-sentinel {
-  padding-top: 40px;
-  text-align: center;
-}
-
-.gallery-loader {
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  padding: 24px 0;
-
-  span {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    animation: loaderDot 1.2s ease-in-out infinite;
-
-    &:nth-child(2) { animation-delay: 0.2s; }
-    &:nth-child(3) { animation-delay: 0.4s; }
-  }
-}
-
-@keyframes loaderDot {
-  0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
-  40% { opacity: 1; transform: scale(1); }
-}
 
 /* CTA BANNER */
 .cta-banner {

@@ -94,7 +94,7 @@
     </div>
 
     <div class="gallery-masonry">
-      @for (img of visibleImages(); track img.src; let i = $index) {
+      @for (img of galleryImages; track img.src) {
         <div class="gallery-masonry__item">
           <app-lazy-image
             [src]="img.src"
@@ -107,16 +107,8 @@
       }
     </div>
 
-    <div #gallerySentinel class="gallery-sentinel">
-      @if (hasMore()) {
-        <div class="gallery-loader">
-          <span></span><span></span><span></span>
-        </div>
-      } @else {
-        <div class="gallery-preview__cta">
-          <a routerLink="/portfolio" class="btn-outline">Celé portfolio →</a>
-        </div>
-      }
+    <div class="gallery-preview__cta reveal">
+      <a routerLink="/portfolio" class="btn-outline">Celé portfolio →</a>
     </div>
 
   </div>
