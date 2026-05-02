@@ -1,0 +1,113 @@
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__bg">
+    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1600&q=80" alt="Hero" loading="eager" />
+    <div class="hero__overlay"></div>
+  </div>
+  <div class="hero__content">
+    <span class="section-label" style="color: rgba(245,240,232,0.6); animation: fadeUp 0.6s 0.2s ease both;">Fotoateliér v palírně</span>
+    <h1 class="hero__title" style="animation: fadeUp 0.7s 0.4s ease both;">
+      Fotografie<br>plná <em>světla</em><br>a ticha.
+    </h1>
+    <p class="hero__sub" style="animation: fadeUp 0.7s 0.6s ease both;">
+      Portréty, svatby, produkty a reportáže.<br>Karviná a Moravskoslezský kraj.
+    </p>
+    <div class="hero__actions" style="animation: fadeUp 0.7s 0.8s ease both;">
+      <a routerLink="/portfolio" class="btn-primary">Zobrazit práce</a>
+      <a routerLink="/kontakt" class="btn-ghost">Rezervovat →</a>
+    </div>
+  </div>
+  <div class="hero__scroll">
+    <span>Scrollujte</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<section class="intro-strip">
+  <div class="container-main">
+    <div class="intro-strip__grid">
+      <div class="intro-strip__stat reveal">
+        <span class="intro-strip__num">8+</span>
+        <span class="intro-strip__lbl">Let praxe</span>
+      </div>
+      <div class="intro-strip__sep"></div>
+      <div class="intro-strip__stat reveal delay-100">
+        <span class="intro-strip__num">200+</span>
+        <span class="intro-strip__lbl">Svateb</span>
+      </div>
+      <div class="intro-strip__sep"></div>
+      <div class="intro-strip__stat reveal delay-200">
+        <span class="intro-strip__num">12</span>
+        <span class="intro-strip__lbl">Publikací</span>
+      </div>
+      <div class="intro-strip__sep"></div>
+      <div class="intro-strip__quote reveal delay-300">
+        <p>Fotografka, milovnice světla a tichých chvil. Každý snímek je rozhodnutí.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services section-padding">
+  <div class="container-main">
+    <div class="services__header reveal">
+      <span class="section-label">Co nabízím</span>
+      <h2 class="services__title">
+        Specializuji se<br>na <em class="text-accent-italic">čtyři oblasti</em>.
+      </h2>
+    </div>
+    <div class="services__grid">
+      @for (s of services; track s.title; let i = $index) {
+        <div class="service-card reveal" [style.transition-delay]="(i * 0.1) + 's'">
+          <span class="service-card__icon">{{ s.icon }}</span>
+          <h3 class="service-card__title">{{ s.title }}</h3>
+          <p class="service-card__desc">{{ s.desc }}</p>
+          <a routerLink="/cenik" class="service-card__link">Zjistit cenu →</a>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY PREVIEW -->
+<section class="gallery-preview section-padding">
+  <div class="container-main">
+    <div class="gallery-preview__header reveal">
+      <span class="section-label">Portfolio</span>
+      <h2 class="gallery-preview__title">
+        Vybrané <em class="text-accent-italic">práce</em>.
+      </h2>
+    </div>
+    <div class="gallery-preview__grid">
+      @for (img of galleryImages; track img.src; let i = $index) {
+        <div class="gallery-preview__item reveal" [style.transition-delay]="(i * 0.08) + 's'">
+          <app-lazy-image
+            [src]="img.src"
+            [alt]="img.alt"
+            wrapperClass="gallery-preview__img-wrap"
+          ></app-lazy-image>
+          <span class="gallery-preview__cat">{{ img.category }}</span>
+        </div>
+      }
+    </div>
+    <div class="gallery-preview__cta reveal">
+      <a routerLink="/portfolio" class="btn-outline">Celé portfolio →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="container-main">
+    <div class="cta-banner__inner reveal">
+      <span class="section-label" style="color: rgba(245,240,232,0.5);">Pojďme spolupracovat</span>
+      <h2 class="cta-banner__title">
+        Pojďme se <em class="text-accent-italic" style="color: var(--color-accent-light);">domluvit.</em>
+      </h2>
+      <p>Napište mi a ozvu se do 24 hodin.</p>
+      <a routerLink="/kontakt" class="btn-primary" style="background: var(--color-bg); color: var(--color-text);">Kontaktovat →</a>
+    </div>
+  </div>
+</section>

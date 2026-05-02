@@ -1,0 +1,68 @@
+<div class="portfolio-page">
+  <!-- Header -->
+  <section class="portfolio-header">
+    <div class="container-main">
+      <div class="portfolio-header__inner">
+        <div class="reveal">
+          <app-section-header label="Portfolio">
+            Vybrané <em class="text-accent-italic">práce</em><br>z let 2023&nbsp;&mdash;&nbsp;2024
+          </app-section-header>
+        </div>
+        <p class="portfolio-header__desc reveal delay-200">
+          Průřez portrétními, svatebními, produktovými a reportážními zakázkami.
+          Pro detail klikněte na fotografii.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter bar -->
+  <div class="portfolio-filter" [class.sticky]="isFilterSticky()">
+    <div class="container-main">
+      <div class="portfolio-filter__inner">
+        <div class="portfolio-filter__tabs">
+          @for (cat of categories; track cat) {
+            <button
+              class="portfolio-filter__tab"
+              [class.active]="activeCategory() === cat"
+              (click)="setCategory(cat)"
+            >{{ cat }}</button>
+          }
+        </div>
+        <span class="portfolio-filter__count">{{ filteredPhotos().length }} fotografií</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <section class="portfolio-grid-section">
+    <div class="container-main">
+      <div class="portfolio-grid">
+        @for (photo of filteredPhotos(); track photo.src; let i = $index) {
+          <div class="portfolio-item reveal" [style.transition-delay]="(i % 6 * 0.07) + 's'">
+            <app-lazy-image
+              [src]="photo.src"
+              [alt]="photo.alt"
+              wrapperClass="portfolio-item__img"
+            ></app-lazy-image>
+            <div class="portfolio-item__overlay">
+              <span class="portfolio-item__cat">{{ photo.category }}</span>
+              <span class="portfolio-item__name">{{ photo.alt }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="portfolio-cta section-padding">
+    <div class="container-main">
+      <div class="portfolio-cta__inner reveal">
+        <span class="section-label">Líbí se vám práce?</span>
+        <h2>Pojďme vytvořit<br>něco <em class="text-accent-italic">krásného</em>.</h2>
+        <a routerLink="/kontakt" class="portfolio-cta__btn">Kontaktovat →</a>
+      </div>
+    </div>
+  </section>
+</div>

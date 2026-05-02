@@ -1,0 +1,119 @@
+<div class="contact-page">
+  <section class="contact-hero section-padding">
+    <div class="container-main">
+      <div class="contact-hero__inner">
+        <!-- Left info -->
+        <div class="contact-info reveal-left">
+          <span class="section-label">Kontakt</span>
+          <h1 class="contact-info__title">
+            Pojďme se <em class="text-accent-italic">domluvit.</em>
+          </h1>
+          <p class="contact-info__intro">
+            Napište mi přes formulář, e-mailem nebo zavolejte.
+            Obvykle se ozvu do 24 hodin.
+          </p>
+
+          <div class="contact-detail">
+            <span class="contact-detail__label">Napsat</span>
+            <a href="mailto:ahoj@palirna.cz" class="contact-detail__val">ahoj&#64;palirna.cz</a>
+          </div>
+
+          <div class="contact-detail">
+            <span class="contact-detail__label">Zavolat</span>
+            <a href="tel:+420777123456" class="contact-detail__val">+420 777 123 456</a>
+            <span class="contact-detail__note">Po – Pá, 9:00 – 18:00</span>
+          </div>
+
+          <div class="contact-detail">
+            <span class="contact-detail__label">Navštívit</span>
+            <address class="contact-detail__addr">
+              Fotoateliér v palírně<br>
+              Stará palírna<br>
+              Karviná–Fryštát<br>
+              735 06 Česká republika
+            </address>
+            <span class="contact-detail__note">Návštěva po předchozí domluvě</span>
+          </div>
+
+          <div class="contact-detail">
+            <span class="contact-detail__label">Sledovat</span>
+            <div class="contact-socials">
+              <a href="#" target="_blank">Instagram</a>
+              <a href="#" target="_blank">Facebook</a>
+              <a href="#" target="_blank">Behance</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="contact-form-wrap reveal delay-200">
+          @if (!submitted()) {
+            <form class="contact-form" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" novalidate>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="name">Jméno *</label>
+                  <input id="name" name="name" type="text" [(ngModel)]="formData.name" required placeholder=" "/>
+                </div>
+                <div class="form-field">
+                  <label for="email">E-mail *</label>
+                  <input id="email" name="email" type="email" [(ngModel)]="formData.email" required placeholder=" "/>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="phone">Telefon</label>
+                  <input id="phone" name="phone" type="tel" [(ngModel)]="formData.phone" placeholder=" "/>
+                </div>
+                <div class="form-field">
+                  <label for="type">Typ focení</label>
+                  <select id="type" name="type" [(ngModel)]="formData.type">
+                    @for (t of shootTypes; track t) {
+                      <option [value]="t">{{ t }}</option>
+                    }
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="date">Předpokládané datum</label>
+                <input id="date" name="date" type="date" [(ngModel)]="formData.date"/>
+              </div>
+
+              <div class="form-field">
+                <label for="message">Co byste rádi nafotili? *</label>
+                <textarea id="message" name="message" rows="5" [(ngModel)]="formData.message" required placeholder=" "></textarea>
+              </div>
+
+              <div class="form-gdpr">
+                <input type="checkbox" id="gdpr" name="gdpr" [(ngModel)]="formData.gdpr" required/>
+                <label for="gdpr">
+                  Souhlasím se zpracováním osobních údajů pro účely vyřízení poptávky
+                  podle zásad ochrany osobních údajů. *
+                </label>
+              </div>
+
+              <div class="form-footer">
+                <button type="submit" class="form-submit" [disabled]="sending()">
+                  @if (sending()) {
+                    <span>Odesílám...</span>
+                  } @else {
+                    <span>Odeslat zprávu →</span>
+                  }
+                </button>
+                <span class="form-required">* povinná pole</span>
+              </div>
+            </form>
+          } @else {
+            <div class="contact-success">
+              <span class="contact-success__icon">◎</span>
+              <h2>Zpráva odeslána!</h2>
+              <p>Děkuji za váš zájem. Ozvu se vám do 24 hodin.</p>
+              <a routerLink="/" class="contact-success__btn">Zpět na úvod</a>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

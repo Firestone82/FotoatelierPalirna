@@ -1,0 +1,92 @@
+<div class="pricing-page">
+  <section class="pricing-header section-padding">
+    <div class="container-main">
+      <div class="pricing-header__inner">
+        <div class="reveal">
+          <span class="section-label">Ceník</span>
+          <h1 class="pricing-header__title">
+            Transparentní <em class="text-accent-italic">ceny</em><br>bez skrytých poplatků.
+          </h1>
+        </div>
+        <p class="pricing-header__note reveal delay-200">
+          Všechny ceny jsou orientační. Finální nabídku připravím
+          po konzultaci. Cestovné mimo Karviná dle dohody.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section class="pricing-packages">
+    <div class="container-main">
+      <div class="pricing-grid">
+        @for (pkg of packages; track pkg.name; let i = $index) {
+          <div class="pricing-card reveal" [class.highlight]="pkg.highlight" [style.transition-delay]="(i * 0.1) + 's'">
+            @if (pkg.highlight) {
+              <span class="pricing-card__badge">Nejoblíbenější</span>
+            }
+            <div class="pricing-card__top">
+              <h2 class="pricing-card__name">{{ pkg.name }}</h2>
+              <div class="pricing-card__price">
+                <span class="pricing-card__amount">{{ pkg.price }}</span>
+                <span class="pricing-card__unit">{{ pkg.unit }}</span>
+              </div>
+              <p class="pricing-card__desc">{{ pkg.desc }}</p>
+            </div>
+            <ul class="pricing-card__items">
+              @for (item of pkg.items; track item) {
+                <li>
+                  <span class="pricing-card__check">✓</span>
+                  {{ item }}
+                </li>
+              }
+            </ul>
+            <a routerLink="/kontakt" class="pricing-card__btn">
+              Rezervovat → 
+            </a>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ / Notes -->
+  <section class="pricing-notes section-padding">
+    <div class="container-main">
+      <div class="pricing-notes__grid">
+        <div class="reveal">
+          <span class="section-label">Důležité informace</span>
+          <h2>Na co se<br>nejčastěji <em class="text-accent-italic">ptáte</em>.</h2>
+        </div>
+        <div class="pricing-faq">
+          <div class="pricing-faq__item reveal">
+            <h3>Jak probíhá rezervace?</h3>
+            <p>Po nezávazné konzultaci zašlu smlouvu a zálohovou fakturu ve výši 30 %. Po uhrazení zálohy je termín závazně zarezervován.</p>
+          </div>
+          <div class="pricing-faq__item reveal delay-100">
+            <h3>Kdy dostanu fotografie?</h3>
+            <p>Portréty a produkty do 7 pracovních dní. Svatební reportáž do 3 týdnů. Vždy dostanete soukromý odkaz na galerii.</p>
+          </div>
+          <div class="pricing-faq__item reveal delay-200">
+            <h3>Mohu si fotografie vytisknout?</h3>
+            <p>Ano. Ke každé zakázce dostanete licenci pro osobní tisk. Pro komerční využití je nutná rozšířená komerční licence.</p>
+          </div>
+          <div class="pricing-faq__item reveal delay-300">
+            <h3>Fotografujete i mimo kraj?</h3>
+            <p>Fotografuji i v zahraničí. Cestovné a případné ubytování je účtováno zvlášť dle dohody.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="pricing-cta section-padding" style="background: var(--color-text);">
+    <div class="container-main">
+      <div class="pricing-cta__inner reveal">
+        <h2>Připravena začít.<br><em style="color: var(--color-accent-light); font-style: italic; font-family: var(--font-serif);">Jste vy?</em></h2>
+        <a routerLink="/kontakt" class="pricing-cta__btn">Napsat mi →</a>
+      </div>
+    </div>
+  </section>
+</div>
