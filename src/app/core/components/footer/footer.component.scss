@@ -70,7 +70,7 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     margin-bottom: 16px;
-    opacity: 0.5;
+    color: rgba(245, 240, 232, 0.65);
   }
 
   &__social-links {
@@ -97,7 +97,7 @@
     flex-wrap: wrap;
     gap: 8px;
     font-size: 12px;
-    opacity: 0.4;
+    color: rgba(245, 240, 232, 0.6);
 
     a {
       color: inherit;
