@@ -21,7 +21,7 @@
     <div class="container-main">
       <div class="portfolio-filter__inner">
         <div class="portfolio-filter__tabs">
-          @for (cat of categories; track cat) {
+          @for (cat of categories(); track cat) {
             <button
               class="portfolio-filter__tab"
               [class.active]="activeCategory() === cat"

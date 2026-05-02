@@ -20,7 +20,7 @@
   <section class="pricing-packages">
     <div class="container-main">
       <div class="pricing-grid">
-        @for (pkg of packages; track pkg.name; let i = $index) {
+        @for (pkg of packages(); track pkg.name; let i = $index) {
           <div class="pricing-card reveal" [class.highlight]="pkg.highlight" [style.transition-delay]="(i * 0.1) + 's'">
             @if (pkg.highlight) {
               <span class="pricing-card__badge">Nejoblíbenější</span>
@@ -42,7 +42,7 @@
               }
             </ul>
             <a routerLink="/kontakt" class="pricing-card__btn">
-              Rezervovat → 
+              Rezervovat →
             </a>
           </div>
         }
@@ -59,22 +59,12 @@
           <h2>Na co se<br>nejčastěji <em class="text-accent-italic">ptáte</em>.</h2>
         </div>
         <div class="pricing-faq">
-          <div class="pricing-faq__item reveal">
-            <h3>Jak probíhá rezervace?</h3>
-            <p>Po nezávazné konzultaci zašlu smlouvu a zálohovou fakturu ve výši 30 %. Po uhrazení zálohy je termín závazně zarezervován.</p>
-          </div>
-          <div class="pricing-faq__item reveal delay-100">
-            <h3>Kdy dostanu fotografie?</h3>
-            <p>Portréty a produkty do 7 pracovních dní. Svatební reportáž do 3 týdnů. Vždy dostanete soukromý odkaz na galerii.</p>
-          </div>
-          <div class="pricing-faq__item reveal delay-200">
-            <h3>Mohu si fotografie vytisknout?</h3>
-            <p>Ano. Ke každé zakázce dostanete licenci pro osobní tisk. Pro komerční využití je nutná rozšířená komerční licence.</p>
-          </div>
-          <div class="pricing-faq__item reveal delay-300">
-            <h3>Fotografujete i mimo kraj?</h3>
-            <p>Fotografuji i v zahraničí. Cestovné a případné ubytování je účtováno zvlášť dle dohody.</p>
-          </div>
+          @for (item of faq(); track item.question; let i = $index) {
+            <div class="pricing-faq__item reveal" [style.transition-delay]="(i * 0.1) + 's'">
+              <h3>{{ item.question }}</h3>
+              <p>{{ item.answer }}</p>
+            </div>
+          }
         </div>
       </div>
     </div>
