@@ -10,10 +10,10 @@ import { LazyImageComponent } from '../../shared/components/lazy-image/lazy-imag
 })
 export class HomeComponent implements AfterViewInit {
   services = [
-    { icon: '◎', title: 'Portrét', desc: 'Autentické portréty zachycující osobnost a náladu. Ve studiu i v přírodě.' },
-    { icon: '◇', title: 'Svatba', desc: 'Reportážní dokumentace vašeho velkého dne – od příprav po první tanec.' },
-    { icon: '○', title: 'Produkt', desc: 'Profesionální produktová fotografie pro e-shopy, katalogy a marketing.' },
-    { icon: '△', title: 'Reportáž', desc: 'Živé zachycení událostí, firemních akcí a kulturních pořadů.' },
+    { icon: '◎', title: 'Portrét', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.' },
+    { icon: '◇', title: 'Svatba', desc: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.' },
+    { icon: '○', title: 'Produkt', desc: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.' },
+    { icon: '△', title: 'Reportáž', desc: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.' },
   ];
 
   galleryImages = [

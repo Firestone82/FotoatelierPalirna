@@ -10,8 +10,8 @@
           </h1>
         </div>
         <p class="about-header__tagline reveal delay-200">
-          Fotografka, milovnice světla a tichých chvil. Žiji v Karviné,
-          fotografuji v celém Moravskoslezském kraji a leckdy i mnohem dál.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
     </div>
@@ -73,51 +73,72 @@
     </div>
   </section>
 
-  <!-- Values -->
-  <section class="about-values section-padding">
+  <!-- Ateliér -->
+  <section class="about-atelier section-padding">
     <div class="container-main">
-      <div class="about-values__header reveal">
-        <span class="section-label">Přístup k práci</span>
-        <h2>Co mě vede při<br>každém <em class="text-accent-italic">focení</em>.</h2>
+      <div class="about-atelier__header reveal">
+        <span class="section-label">Ateliér</span>
+        <h2>Prostory, kde<br>vznikají <em class="text-accent-italic">snímky</em>.</h2>
+        <p class="about-atelier__intro">
+          Ateliér sídlí ve Staré palírně v Karviné–Fryštátu. Historický prostor
+          s cihlovými stěnami, vysokými stropy a severním světlem nabízí přirozené
+          i studiové podmínky pro portrétní, produktovou i módní fotografii.
+        </p>
       </div>
-      <div class="about-values__grid">
-        <div class="about-value reveal">
-          <span class="about-value__num">01</span>
-          <h3>Světlo nade vše</h3>
-          <p>Přirozené světlo je základem každé dobré fotografie. Čtu prostor, čas a atmosféru dřív, než zdvihnu fotoaparát.</p>
-        </div>
-        <div class="about-value reveal delay-100">
-          <span class="about-value__num">02</span>
-          <h3>Lidský přístup</h3>
-          <p>Každý klient je jiný. Mám ráda lidi a snažím se, aby se při focení cítili přirozeně a v bezpečí.</p>
-        </div>
-        <div class="about-value reveal delay-200">
-          <span class="about-value__num">03</span>
-          <h3>Poctivá postprodukce</h3>
-          <p>Retušuji s mírou. Chci, aby fotografie vypadaly jako zachycený okamžik, ne jako ilustrace.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Gear -->
-  <section class="about-gear section-padding">
-    <div class="container-main">
-      <div class="about-gear__header reveal">
-        <span class="section-label">Výbava</span>
-        <h2>Čím <em class="text-accent-italic">fotím</em>.</h2>
-      </div>
-      <div class="about-gear__grid">
-        @for (group of gear; track group.category; let i = $index) {
-          <div class="about-gear__group reveal" [style.transition-delay]="(i * 0.1) + 's'">
-            <h3 class="about-gear__cat">{{ group.category }}</h3>
-            <ul class="about-gear__list">
-              @for (item of group.items; track item) {
-                <li>{{ item }}</li>
-              }
-            </ul>
+      <div class="about-atelier__grid">
+        <div class="about-atelier__col-main reveal-left">
+          <app-lazy-image
+            src="https://picsum.photos/seed/atelier-hall/800/1000"
+            alt="Hlavní prostor ateliéru"
+            wrapperClass="about-atelier__img-main"
+          ></app-lazy-image>
+        </div>
+        <div class="about-atelier__col-side">
+          <div class="reveal delay-100">
+            <app-lazy-image
+              src="https://picsum.photos/seed/atelier-window/700/460"
+              alt="Severní okno s přirozeným světlem"
+              wrapperClass="about-atelier__img-sm"
+            ></app-lazy-image>
           </div>
-        }
+          <div class="reveal delay-200">
+            <app-lazy-image
+              src="https://picsum.photos/seed/atelier-bricks/700/460"
+              alt="Cihlová stěna – pozadí pro focení"
+              wrapperClass="about-atelier__img-sm"
+            ></app-lazy-image>
+          </div>
+          <div class="reveal delay-300">
+            <app-lazy-image
+              src="https://picsum.photos/seed/atelier-lights/700/460"
+              alt="Studiové světelné vybavení"
+              wrapperClass="about-atelier__img-sm"
+            ></app-lazy-image>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-atelier__features reveal">
+        <div class="about-atelier__feature">
+          <span class="about-atelier__feature-label">Plocha</span>
+          <span class="about-atelier__feature-val">120 m²</span>
+        </div>
+        <div class="about-atelier__sep"></div>
+        <div class="about-atelier__feature">
+          <span class="about-atelier__feature-label">Výška stropu</span>
+          <span class="about-atelier__feature-val">4,5 m</span>
+        </div>
+        <div class="about-atelier__sep"></div>
+        <div class="about-atelier__feature">
+          <span class="about-atelier__feature-label">Pozadí</span>
+          <span class="about-atelier__feature-val">Cihla / plátno / exteriér</span>
+        </div>
+        <div class="about-atelier__sep"></div>
+        <div class="about-atelier__feature">
+          <span class="about-atelier__feature-label">Parkování</span>
+          <span class="about-atelier__feature-val">Zdarma před objektem</span>
+        </div>
       </div>
     </div>
   </section>
