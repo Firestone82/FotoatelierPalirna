@@ -17,6 +17,7 @@ export class NavbarComponent {
   navItems = [
     { label: 'Úvod', route: '/' },
     { label: 'Portfolio', route: '/portfolio' },
+    { label: 'Ateliér', route: '/ateliar' },
     { label: 'O mně', route: '/o-mne' },
     { label: 'Ceník', route: '/cenik' },
     { label: 'Kontakt', route: '/kontakt' },

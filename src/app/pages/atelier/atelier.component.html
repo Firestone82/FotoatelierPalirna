@@ -1,0 +1,115 @@
+<div class="atelier-page">
+
+  <!-- Header -->
+  <section class="atelier-header section-padding">
+    <div class="container-main">
+      <div class="atelier-header__inner">
+        <div class="reveal">
+          <span class="section-label">Ateliér</span>
+          <h1 class="atelier-header__title">
+            Prostory, kde<br>vznikají <em class="text-accent-italic">snímky</em>.
+          </h1>
+        </div>
+        <p class="atelier-header__tagline reveal delay-200">
+          Ateliér sídlí ve Staré palírně v Karviné–Fryštátu. Historický prostor
+          s cihlovými stěnami, vysokými stropy a severním světlem – pro portrétní,
+          produktovou i módní fotografii.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo grid -->
+  <section class="atelier-gallery">
+    <div class="atelier-gallery__grid">
+      @for (photo of photos; track photo.src) {
+        <div class="atelier-gallery__item" [class.wide]="photo.wide">
+          <app-lazy-image
+            [src]="photo.src"
+            [alt]="photo.alt"
+            wrapperClass="atelier-gallery__img"
+          ></app-lazy-image>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Specs strip -->
+  <section class="atelier-specs section-padding">
+    <div class="container-main">
+      <div class="atelier-specs__grid reveal">
+        <div class="atelier-spec">
+          <span class="atelier-spec__num">120</span>
+          <span class="atelier-spec__unit">m²</span>
+          <span class="atelier-spec__label">Celková plocha</span>
+        </div>
+        <div class="atelier-specs__sep"></div>
+        <div class="atelier-spec">
+          <span class="atelier-spec__num">4,5</span>
+          <span class="atelier-spec__unit">m</span>
+          <span class="atelier-spec__label">Výška stropu</span>
+        </div>
+        <div class="atelier-specs__sep"></div>
+        <div class="atelier-spec">
+          <span class="atelier-spec__num">3</span>
+          <span class="atelier-spec__unit">×</span>
+          <span class="atelier-spec__label">Typy pozadí</span>
+        </div>
+        <div class="atelier-specs__sep"></div>
+        <div class="atelier-spec">
+          <span class="atelier-spec__num">∞</span>
+          <span class="atelier-spec__unit"></span>
+          <span class="atelier-spec__label">Parkování zdarma</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="atelier-features section-padding">
+    <div class="container-main">
+      <div class="atelier-features__header reveal">
+        <span class="section-label">Co ateliér nabízí</span>
+        <h2>Vše, co pro<br>focení <em class="text-accent-italic">potřebujete</em>.</h2>
+      </div>
+      <div class="atelier-features__grid">
+        <div class="atelier-feature reveal">
+          <span class="atelier-feature__icon">◎</span>
+          <h3>Přirozené světlo</h3>
+          <p>Velká severní okna poskytují měkké, rovnoměrné světlo po celý den bez přímého slunce.</p>
+        </div>
+        <div class="atelier-feature reveal delay-100">
+          <span class="atelier-feature__icon">◇</span>
+          <h3>Studiové vybavení</h3>
+          <p>Dva blesky Godox AD600 Pro, softboxy, odrazné plochy. Vše připravené k použití.</p>
+        </div>
+        <div class="atelier-feature reveal delay-200">
+          <span class="atelier-feature__icon">△</span>
+          <h3>Různá pozadí</h3>
+          <p>Originální cihlová stěna, bílé a šedé papírové pozadí, přírodní exteriér dvora.</p>
+        </div>
+        <div class="atelier-feature reveal delay-300">
+          <span class="atelier-feature__icon">○</span>
+          <h3>Zázemí pro klienty</h3>
+          <p>Šatna, zrcadlo, odpočinkový koutek. Focení může být příjemný zážitek, ne stres.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="atelier-cta section-padding">
+    <div class="container-main">
+      <div class="atelier-cta__inner reveal">
+        <span class="section-label">Přijďte se podívat</span>
+        <h2>Domluvte si<br><em class="text-accent-italic">prohlídku</em>.</h2>
+        <p>Ateliér je dostupný po předchozí domluvě. Ráda vám prostory ukáži a probereme focení.</p>
+        <div class="atelier-cta__actions">
+          <a routerLink="/kontakt" class="atelier-cta__btn-primary">Napsat mi →</a>
+          <a routerLink="/cenik" class="atelier-cta__btn-outline">Ceník</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
