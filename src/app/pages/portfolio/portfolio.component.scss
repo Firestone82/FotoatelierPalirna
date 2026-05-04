@@ -1,6 +1,4 @@
-.portfolio-page {
-  padding-top: 72px;
-}
+/* pt-[72px] and section bg colors are now Tailwind classes in portfolio.component.html */
 
 .portfolio-header {
   padding: 80px 0 48px;
@@ -29,7 +27,6 @@
 .portfolio-filter {
   background: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
-  padding: 0;
   transition: box-shadow 0.3s ease;
 
   &.sticky {
@@ -43,7 +40,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0;
     height: 56px;
     gap: 16px;
     overflow-x: auto;
@@ -153,9 +149,8 @@
   }
 }
 
+/* bg-site-bg-alt moved to HTML */
 .portfolio-cta {
-  background: var(--color-bg-alt);
-
   &__inner {
     display: flex;
     flex-direction: column;

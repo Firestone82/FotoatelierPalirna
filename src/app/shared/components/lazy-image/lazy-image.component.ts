@@ -24,15 +24,15 @@ import { NgClass } from '@angular/common';
   styleUrl: './lazy-image.component.scss'
 })
 export class LazyImageComponent implements AfterViewInit {
-  @Input() src = '';
-  @Input() alt = '';
-  @Input() wrapperClass = '';
-  @Input() aspectRatio = '';
+  @Input() src: string = '';
+  @Input() alt: string = '';
+  @Input() wrapperClass: string = '';
+  @Input() aspectRatio: string = '';
 
-  loaded = signal(false);
+  loaded = signal<boolean>(false);
   private el = inject(ElementRef);
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -45,7 +45,7 @@ export class LazyImageComponent implements AfterViewInit {
     observer.observe(this.el.nativeElement);
   }
 
-  onLoad() {
+  onLoad(): void {
     this.loaded.set(true);
   }
 }

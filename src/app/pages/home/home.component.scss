@@ -156,22 +156,6 @@
   &:hover { background: #7a3c24; transform: translateY(-1px); }
 }
 
-.btn-ghost {
-  display: inline-block;
-  color: rgba(245, 240, 232, 0.8);
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding-bottom: 2px;
-  border-bottom: 1px solid rgba(245, 240, 232, 0.4);
-  transition: color 0.2s, border-color 0.2s;
-
-  &:hover { color: var(--color-bg); border-color: rgba(245,240,232,0.8); }
-}
-
 .btn-ghost-dark {
   display: inline-block;
   color: var(--color-text-muted);
@@ -204,11 +188,8 @@
   &:hover { background: var(--color-text); color: var(--color-bg); }
 }
 
-/* INTRO STRIP */
+/* INTRO STRIP — bg-site-text py-12 moved to HTML */
 .intro-strip {
-  background: var(--color-text);
-  padding: 48px 0;
-
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -337,10 +318,8 @@
   }
 }
 
-/* GALLERY PREVIEW */
+/* GALLERY PREVIEW — bg-site-bg-alt moved to HTML */
 .gallery-preview {
-  background: var(--color-bg-alt);
-
   &__header {
     margin-bottom: 48px;
     display: flex;
@@ -406,12 +385,8 @@
   }
 }
 
-
-/* CTA BANNER */
+/* CTA BANNER — bg-site-text py-[100px] moved to HTML */
 .cta-banner {
-  background: var(--color-text);
-  padding: 100px 0;
-
   &__inner {
     display: flex;
     flex-direction: column;

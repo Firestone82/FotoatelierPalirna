@@ -1,18 +1,31 @@
 import { Component, AfterViewInit, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { ObfuscatedEmailComponent } from '../../shared/components/obfuscated-email/obfuscated-email.component';
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  type: string;
+  date: string;
+  message: string;
+  gdpr: boolean;
+}
 
 @Component({
   selector: 'app-contact',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, ObfuscatedEmailComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
 export class ContactComponent implements AfterViewInit {
-  submitted = signal(false);
-  sending = signal(false);
+  submitted = signal<boolean>(false);
+  sending = signal<boolean>(false);
 
-  formData = {
+  readonly shootTypes: string[] = ['Portrét', 'Svatba', 'Produkt', 'Reportáž', 'Jiné'];
+
+  formData: ContactFormData = {
     name: '',
     email: '',
     phone: '',
@@ -22,9 +35,7 @@ export class ContactComponent implements AfterViewInit {
     gdpr: false,
   };
 
-  shootTypes = ['Portrét', 'Svatba', 'Produkt', 'Reportáž', 'Jiné'];
-
-  onSubmit(form: NgForm) {
+  onSubmit(form: NgForm): void {
     if (form.invalid || !this.formData.gdpr) return;
     this.sending.set(true);
     setTimeout(() => {
@@ -33,7 +44,7 @@ export class ContactComponent implements AfterViewInit {
     }, 1200);
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');

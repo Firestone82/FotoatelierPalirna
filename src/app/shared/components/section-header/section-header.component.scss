@@ -1,17 +1,1 @@
-.section-header {
-  &__title {
-    font-family: var(--font-serif);
-    font-size: clamp(36px, 5vw, 62px);
-    font-weight: 400;
-    line-height: 1.1;
-    color: var(--color-text);
-    max-width: 700px;
-  }
-  &__desc {
-    margin-top: 24px;
-    max-width: 440px;
-    font-size: 15px;
-    color: var(--color-text-muted);
-    line-height: 1.7;
-  }
-}
+/* All styles migrated to Tailwind utility classes in section-header.component.ts template */

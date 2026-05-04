@@ -1,21 +1,4 @@
-.contact-page {
-  padding-top: 72px;
-}
-
-.contact-hero {
-  padding-bottom: 80px;
-}
-
-.contact-hero__inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 64px;
-
-  @media (min-width: 900px) {
-    grid-template-columns: 340px 1fr;
-    align-items: start;
-  }
-}
+/* pt-[72px] and hero inner grid are now Tailwind classes in the HTML */
 
 .contact-info {
   &__title {

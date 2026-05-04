@@ -2,6 +2,16 @@ import { Component, AfterViewInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LazyImageComponent } from '../../shared/components/lazy-image/lazy-image.component';
 
+interface Stat {
+  num: string;
+  label: string;
+}
+
+interface GearGroup {
+  category: string;
+  items: string[];
+}
+
 @Component({
   selector: 'app-about',
   imports: [RouterLink, LazyImageComponent],
@@ -9,13 +19,13 @@ import { LazyImageComponent } from '../../shared/components/lazy-image/lazy-imag
   styleUrl: './about.component.scss'
 })
 export class AboutComponent implements AfterViewInit {
-  stats = [
+  readonly stats: Stat[] = [
     { num: '8+', label: 'Let praxe' },
     { num: '200+', label: 'Svateb' },
     { num: '12', label: 'Publikací' },
   ];
 
-  gear = [
+  readonly gear: GearGroup[] = [
     {
       category: 'Těla',
       items: ['Sony α7 IV', 'Sony α7R V'],
@@ -34,7 +44,7 @@ export class AboutComponent implements AfterViewInit {
     },
   ];
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');

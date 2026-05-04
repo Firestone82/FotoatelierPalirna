@@ -2,6 +2,11 @@ import { Component, HostListener, signal, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
+interface NavItem {
+  label: string;
+  route: string;
+}
+
 @Component({
   selector: 'app-navbar',
   imports: [RouterLink, RouterLinkActive],
@@ -11,10 +16,10 @@ import { filter } from 'rxjs/operators';
 export class NavbarComponent {
   private router = inject(Router);
 
-  isScrolled = signal(false);
-  isMenuOpen = signal(false);
+  isScrolled = signal<boolean>(false);
+  isMenuOpen = signal<boolean>(false);
 
-  navItems = [
+  readonly navItems: NavItem[] = [
     { label: 'Úvod', route: '/' },
     { label: 'Portfolio', route: '/portfolio' },
     { label: 'O mně', route: '/o-mne' },
@@ -31,11 +36,11 @@ export class NavbarComponent {
   }
 
   @HostListener('window:scroll')
-  onScroll() {
+  onScroll(): void {
     this.isScrolled.set(window.scrollY > 40);
   }
 
-  toggleMenu() {
+  toggleMenu(): void {
     this.isMenuOpen.update(v => !v);
   }
 }

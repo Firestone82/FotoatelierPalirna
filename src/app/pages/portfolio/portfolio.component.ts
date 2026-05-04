@@ -17,12 +17,12 @@ interface Photo {
   styleUrl: './portfolio.component.scss'
 })
 export class PortfolioComponent implements AfterViewInit {
-  activeCategory = signal('Vše');
-  isFilterSticky = signal(false);
+  activeCategory = signal<string>('Vše');
+  isFilterSticky = signal<boolean>(false);
 
-  categories = ['Vše', 'Portrét', 'Svatba', 'Produkt', 'Reportáž'];
+  readonly categories: string[] = ['Vše', 'Portrét', 'Svatba', 'Produkt', 'Reportáž'];
 
-  photos: Photo[] = [
+  readonly photos: Photo[] = [
     { src: 'https://picsum.photos/seed/pp01/400/600', alt: 'Portrét v lese', category: 'Portrét', aspectRatio: '2/3' },
     { src: 'https://picsum.photos/seed/pw01/600/400', alt: 'Zásnuby', category: 'Svatba', aspectRatio: '3/2' },
     { src: 'https://picsum.photos/seed/pr01/800/450', alt: 'Reportáž krajina', category: 'Reportáž', aspectRatio: '16/9' },
@@ -43,25 +43,25 @@ export class PortfolioComponent implements AfterViewInit {
     { src: 'https://picsum.photos/seed/pr04/800/450', alt: 'Krajina západ', category: 'Reportáž', aspectRatio: '16/9' },
   ];
 
-  filteredPhotos = computed(() => {
-    const cat = this.activeCategory();
+  filteredPhotos = computed<Photo[]>(() => {
+    const cat: string = this.activeCategory();
     return cat === 'Vše' ? this.photos : this.photos.filter(p => p.category === cat);
   });
 
-  setCategory(cat: string) {
+  setCategory(cat: string): void {
     this.activeCategory.set(cat);
   }
 
   @HostListener('window:scroll')
-  onScroll() {
+  onScroll(): void {
     const filterBar = document.querySelector('.portfolio-filter');
     if (filterBar) {
-      const rect = filterBar.getBoundingClientRect();
+      const rect: DOMRect = filterBar.getBoundingClientRect();
       this.isFilterSticky.set(rect.top <= 72);
     }
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');

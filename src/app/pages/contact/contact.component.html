@@ -1,8 +1,10 @@
-<div class="contact-page">
+<div class="pt-[72px]">
   <section class="contact-hero section-padding">
     <div class="container-main">
-      <div class="contact-hero__inner">
-        <!-- Left info -->
+      <!-- Two-column layout: info | form -->
+      <div class="grid grid-cols-1 min-[900px]:grid-cols-[340px_1fr] gap-16 min-[900px]:items-start">
+
+        <!-- Left: contact details -->
         <div class="contact-info reveal-left">
           <span class="section-label">Kontakt</span>
           <h1 class="contact-info__title">
@@ -15,7 +17,11 @@
 
           <div class="contact-detail">
             <span class="contact-detail__label">Napsat</span>
-            <a href="mailto:ahoj@palirna.cz" class="contact-detail__val">ahoj&#64;palirna.cz</a>
+            <!-- Email rendered from base64 at runtime — bots never see the raw address -->
+            <app-obfuscated-email
+              encoded="YWhvakBwYWxpcm5hLmN6"
+              linkClass="contact-detail__val"
+            ></app-obfuscated-email>
           </div>
 
           <div class="contact-detail">
@@ -45,7 +51,7 @@
           </div>
         </div>
 
-        <!-- Form -->
+        <!-- Right: contact form -->
         <div class="contact-form-wrap reveal delay-200">
           @if (!submitted()) {
             <form class="contact-form" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" novalidate>
@@ -113,6 +119,7 @@
             </div>
           }
         </div>
+
       </div>
     </div>
   </section>

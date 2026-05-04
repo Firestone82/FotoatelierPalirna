@@ -1,6 +1,4 @@
-.pricing-page {
-  padding-top: 72px;
-}
+/* pt-[72px] and section bg colors are now Tailwind classes in pricing.component.html */
 
 .pricing-header {
   &__inner {
@@ -178,9 +176,8 @@
   }
 }
 
+/* bg-site-bg-alt moved to HTML */
 .pricing-notes {
-  background: var(--color-bg-alt);
-
   &__grid {
     display: grid;
     gap: 60px;
@@ -225,6 +222,7 @@
   }
 }
 
+/* bg-site-text moved to HTML */
 .pricing-cta {
   &__inner {
     display: flex;

@@ -1,50 +1,64 @@
-<header class="navbar" [class.scrolled]="isScrolled()">
-  <div class="navbar__inner">
+<header
+  class="navbar fixed inset-x-0 top-0 z-[100] bg-site-bg border-b border-site-border"
+  [class.scrolled]="isScrolled()"
+>
+  <div class="max-w-site mx-auto px-6 md:px-12 h-[72px] flex items-center justify-between">
+
     <!-- Logo -->
-    <a routerLink="/" class="navbar__logo">
+    <a routerLink="/" class="flex items-center gap-3 no-underline text-site-text">
       <img
         src="https://picsum.photos/seed/fotopalirna/40/40"
         alt="Logo"
-        class="navbar__logo-img"
+        class="w-9 h-9 object-cover rounded-sm block flex-shrink-0"
       />
-      <div class="navbar__logo-text">
-        <span class="navbar__logo-name">Fotoateliér</span>
-        <span class="navbar__logo-sub">v palírně</span>
+      <div class="flex flex-col leading-[1.1]">
+        <span class="font-site-serif text-[17px] font-medium tracking-[0.01em]">Fotoateliér</span>
+        <span class="font-site-sans text-[9px] tracking-[0.18em] uppercase text-site-muted">v palírně</span>
       </div>
     </a>
 
     <!-- Desktop nav -->
-    <nav class="navbar__nav">
+    <nav class="hidden min-[900px]:flex gap-9 items-center">
       @for (item of navItems; track item.route) {
         <a
           [routerLink]="item.route"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: item.route === '/' }"
-          class="navbar__link"
+          class="navbar__link font-site-sans text-[11px] font-medium tracking-[0.14em] uppercase no-underline text-site-muted transition-colors duration-200 relative"
         >{{ item.label }}</a>
       }
     </nav>
 
     <!-- Hamburger -->
-    <button class="navbar__hamburger" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen()">
-      <span [class.open]="isMenuOpen()"></span>
-      <span [class.open]="isMenuOpen()"></span>
-      <span [class.open]="isMenuOpen()"></span>
+    <button
+      class="navbar__hamburger min-[900px]:hidden flex flex-col gap-[5px] cursor-pointer bg-transparent border-0 p-1"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="isMenuOpen()"
+    >
+      <span class="block w-6 h-[1.5px] bg-site-text" [class.open]="isMenuOpen()"></span>
+      <span class="block w-6 h-[1.5px] bg-site-text" [class.open]="isMenuOpen()"></span>
+      <span class="block w-6 h-[1.5px] bg-site-text" [class.open]="isMenuOpen()"></span>
     </button>
   </div>
 </header>
 
 <!-- Mobile menu -->
-<div class="mobile-menu" [class.open]="isMenuOpen()">
-  <nav class="mobile-menu__nav">
+<div
+  class="mobile-menu fixed inset-0 z-[90] bg-site-bg flex items-center justify-center"
+  [class.open]="isMenuOpen()"
+>
+  <nav class="flex flex-col items-center gap-8">
     @for (item of navItems; track item.route) {
       <a
         [routerLink]="item.route"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: item.route === '/' }"
-        class="mobile-menu__link"
+        class="mobile-menu__link font-site-serif text-[42px] font-light no-underline text-site-text transition-colors duration-200"
       >{{ item.label }}</a>
     }
-    <a routerLink="/kontakt" class="mobile-menu__cta">Rezervovat →</a>
+    <a
+      routerLink="/kontakt"
+      class="mt-4 font-site-sans text-[12px] font-medium tracking-[0.14em] uppercase no-underline text-site-text border border-site-text px-7 py-3 transition-colors duration-200 hover:bg-site-text hover:text-site-bg"
+    >Rezervovat →</a>
   </nav>
 </div>

@@ -1,32 +1,54 @@
-<footer class="footer">
-  <div class="footer__inner">
-    <div class="footer__top">
-      <div class="footer__brand">
-        <span class="footer__dot">•</span>
+<footer class="bg-site-text text-[rgba(245,240,232,0.7)] pt-8 pb-5">
+  <div class="max-w-site mx-auto px-6 md:px-12">
+
+    <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-5 md:gap-8 pb-5 border-b border-white/10 md:items-center">
+
+      <!-- Brand -->
+      <div class="flex gap-[10px] items-center">
+        <span class="text-site-accent text-[18px] leading-none">•</span>
         <div>
-          <p class="footer__name">Fotoateliér v palírně</p>
-          <p class="footer__tagline">Zachycuji okamžiky, které zůstávají.</p>
+          <p class="font-site-serif text-[16px] text-site-bg mb-[2px]">Fotoateliér v palírně</p>
+          <p class="font-site-serif italic text-[12px]">Zachycuji okamžiky, které zůstávají.</p>
         </div>
       </div>
-      <nav class="footer__nav">
-        <a routerLink="/">Úvod</a>
-        <a routerLink="/portfolio">Portfolio</a>
-        <a routerLink="/o-mne">O mně</a>
-        <a routerLink="/cenik">Ceník</a>
-        <a routerLink="/kontakt">Kontakt</a>
+
+      <!-- Nav -->
+      <nav class="flex flex-row flex-wrap gap-x-5 gap-y-2">
+        <a routerLink="/"
+           class="text-[11px] font-medium tracking-[0.1em] uppercase no-underline text-[rgba(245,240,232,0.6)] hover:text-site-bg transition-colors duration-200">Úvod</a>
+        <a routerLink="/portfolio"
+           class="text-[11px] font-medium tracking-[0.1em] uppercase no-underline text-[rgba(245,240,232,0.6)] hover:text-site-bg transition-colors duration-200">Portfolio</a>
+        <a routerLink="/o-mne"
+           class="text-[11px] font-medium tracking-[0.1em] uppercase no-underline text-[rgba(245,240,232,0.6)] hover:text-site-bg transition-colors duration-200">O mně</a>
+        <a routerLink="/cenik"
+           class="text-[11px] font-medium tracking-[0.1em] uppercase no-underline text-[rgba(245,240,232,0.6)] hover:text-site-bg transition-colors duration-200">Ceník</a>
+        <a routerLink="/kontakt"
+           class="text-[11px] font-medium tracking-[0.1em] uppercase no-underline text-[rgba(245,240,232,0.6)] hover:text-site-bg transition-colors duration-200">Kontakt</a>
       </nav>
-      <div class="footer__social">
-        <p class="footer__social-label">Sledovat</p>
-        <div class="footer__social-links">
-          <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
-          <a href="https://behance.net" target="_blank" rel="noopener">Behance</a>
+
+      <!-- Social -->
+      <div>
+        <p class="text-[9px] tracking-[0.18em] uppercase mb-2 text-[rgba(245,240,232,0.65)]">Sledovat</p>
+        <div class="flex flex-row gap-4">
+          <a href="https://instagram.com" target="_blank" rel="noopener"
+             class="font-site-serif text-[14px] no-underline text-[rgba(245,240,232,0.6)] hover:text-site-accent-light transition-colors duration-200">Instagram</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener"
+             class="font-site-serif text-[14px] no-underline text-[rgba(245,240,232,0.6)] hover:text-site-accent-light transition-colors duration-200">Facebook</a>
+          <a href="https://behance.net" target="_blank" rel="noopener"
+             class="font-site-serif text-[14px] no-underline text-[rgba(245,240,232,0.6)] hover:text-site-accent-light transition-colors duration-200">Behance</a>
         </div>
       </div>
+
     </div>
-    <div class="footer__bottom">
+
+    <!-- Bottom row -->
+    <div class="pt-4 flex justify-between items-center flex-wrap gap-[6px] text-[11px] text-[rgba(245,240,232,0.6)]">
       <p>© {{ year }} Fotoateliér v palírně. Všechna práva vyhrazena.</p>
-      <p><a href="mailto:ahoj@palirna.cz">ahoj&#64;palirna.cz</a></p>
+      <app-obfuscated-email
+        encoded="YWhvakBwYWxpcm5hLmN6"
+        linkClass="text-[rgba(245,240,232,0.6)] no-underline hover:opacity-80 transition-opacity duration-200"
+      ></app-obfuscated-email>
     </div>
+
   </div>
 </footer>

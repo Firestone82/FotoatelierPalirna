@@ -1,6 +1,4 @@
-.about-page {
-  padding-top: 72px;
-}
+/* pt-[72px] and section bg colors are now Tailwind classes in about.component.html */
 
 .about-header {
   &__inner {
@@ -114,9 +112,8 @@
   }
 }
 
+/* bg-site-bg-alt moved to HTML */
 .about-values {
-  background: var(--color-bg-alt);
-
   &__header {
     margin-bottom: 56px;
 
@@ -173,9 +170,8 @@
   }
 }
 
+/* bg-site-bg-alt moved to HTML */
 .about-gear {
-  background: var(--color-bg-alt);
-
   &__header {
     margin-bottom: 56px;
 
@@ -244,9 +240,8 @@
   }
 }
 
+/* bg-site-text moved to HTML */
 .about-cta {
-  background: var(--color-text);
-
   .section-label { color: rgba(245, 240, 232, 0.65); }
 
   &__inner {

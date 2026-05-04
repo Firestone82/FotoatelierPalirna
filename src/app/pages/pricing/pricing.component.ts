@@ -17,7 +17,7 @@ interface Package {
   styleUrl: './pricing.component.scss'
 })
 export class PricingComponent implements AfterViewInit {
-  packages: Package[] = [
+  readonly packages: Package[] = [
     {
       name: 'Portrét',
       price: '2 900',
@@ -63,7 +63,7 @@ export class PricingComponent implements AfterViewInit {
     },
   ];
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
