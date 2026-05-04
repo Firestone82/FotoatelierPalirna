@@ -43,10 +43,11 @@
 
           <div class="contact-detail">
             <span class="contact-detail__label">Sledovat</span>
+            <!-- Social links from NavigationService — same source as footer -->
             <div class="contact-socials">
-              <a href="#" target="_blank">Instagram</a>
-              <a href="#" target="_blank">Facebook</a>
-              <a href="#" target="_blank">Behance</a>
+              @for (s of socialLinks; track s.label) {
+                <a [href]="s.url" target="_blank" rel="noopener">{{ s.label }}</a>
+              }
             </div>
           </div>
         </div>

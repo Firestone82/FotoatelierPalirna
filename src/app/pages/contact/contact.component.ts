@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, signal } from '@angular/core';
+import { Component, AfterViewInit, signal, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ObfuscatedEmailComponent } from '../../shared/components/obfuscated-email/obfuscated-email.component';
+import { NavigationService, SocialLink } from '../../core/services/navigation.service';
 
 interface ContactFormData {
   name: string;
@@ -20,10 +21,15 @@ interface ContactFormData {
   styleUrl: './contact.component.scss'
 })
 export class ContactComponent implements AfterViewInit {
+  private navService = inject(NavigationService);
+
   submitted = signal<boolean>(false);
   sending = signal<boolean>(false);
 
   readonly shootTypes: string[] = ['Portrét', 'Svatba', 'Produkt', 'Reportáž', 'Jiné'];
+
+  // Social links from NavigationService — no duplication with footer
+  protected readonly socialLinks: SocialLink[] = this.navService.socialLinks;
 
   formData: ContactFormData = {
     name: '',

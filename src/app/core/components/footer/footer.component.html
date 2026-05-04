@@ -1,3 +1,4 @@
+<!-- Link appearances defined by .footer__nav-link / .footer__social-link in SCSS via @apply -->
 <footer class="bg-site-text text-[rgba(245,240,232,0.7)] pt-8 pb-5">
   <div class="max-w-site mx-auto px-6 md:px-12">
 
@@ -12,30 +13,20 @@
         </div>
       </div>
 
-      <!-- Nav -->
+      <!-- Nav — items from NavigationService, same list as the header navbar -->
       <nav class="flex flex-row flex-wrap gap-x-5 gap-y-2">
-        <a routerLink="/"
-           class="text-[11px] font-medium tracking-[0.1em] uppercase no-underline text-[rgba(245,240,232,0.6)] hover:text-site-bg transition-colors duration-200">Úvod</a>
-        <a routerLink="/portfolio"
-           class="text-[11px] font-medium tracking-[0.1em] uppercase no-underline text-[rgba(245,240,232,0.6)] hover:text-site-bg transition-colors duration-200">Portfolio</a>
-        <a routerLink="/o-mne"
-           class="text-[11px] font-medium tracking-[0.1em] uppercase no-underline text-[rgba(245,240,232,0.6)] hover:text-site-bg transition-colors duration-200">O mně</a>
-        <a routerLink="/cenik"
-           class="text-[11px] font-medium tracking-[0.1em] uppercase no-underline text-[rgba(245,240,232,0.6)] hover:text-site-bg transition-colors duration-200">Ceník</a>
-        <a routerLink="/kontakt"
-           class="text-[11px] font-medium tracking-[0.1em] uppercase no-underline text-[rgba(245,240,232,0.6)] hover:text-site-bg transition-colors duration-200">Kontakt</a>
+        @for (item of navItems; track item.route) {
+          <a [routerLink]="item.route" class="footer__nav-link">{{ item.label }}</a>
+        }
       </nav>
 
-      <!-- Social -->
+      <!-- Social — links from NavigationService, same list as contact page -->
       <div>
         <p class="text-[9px] tracking-[0.18em] uppercase mb-2 text-[rgba(245,240,232,0.65)]">Sledovat</p>
         <div class="flex flex-row gap-4">
-          <a href="https://instagram.com" target="_blank" rel="noopener"
-             class="font-site-serif text-[14px] no-underline text-[rgba(245,240,232,0.6)] hover:text-site-accent-light transition-colors duration-200">Instagram</a>
-          <a href="https://facebook.com" target="_blank" rel="noopener"
-             class="font-site-serif text-[14px] no-underline text-[rgba(245,240,232,0.6)] hover:text-site-accent-light transition-colors duration-200">Facebook</a>
-          <a href="https://behance.net" target="_blank" rel="noopener"
-             class="font-site-serif text-[14px] no-underline text-[rgba(245,240,232,0.6)] hover:text-site-accent-light transition-colors duration-200">Behance</a>
+          @for (s of socialLinks; track s.label) {
+            <a [href]="s.url" target="_blank" rel="noopener" class="footer__social-link">{{ s.label }}</a>
+          }
         </div>
       </div>
 

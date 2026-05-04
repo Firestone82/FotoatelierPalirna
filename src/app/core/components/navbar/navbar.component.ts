@@ -1,11 +1,7 @@
 import { Component, HostListener, signal, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-
-interface NavItem {
-  label: string;
-  route: string;
-}
+import { NavigationService, NavItem } from '../../services/navigation.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,17 +11,13 @@ interface NavItem {
 })
 export class NavbarComponent {
   private router = inject(Router);
+  private navService = inject(NavigationService);
 
   isScrolled = signal<boolean>(false);
   isMenuOpen = signal<boolean>(false);
 
-  readonly navItems: NavItem[] = [
-    { label: 'Úvod', route: '/' },
-    { label: 'Portfolio', route: '/portfolio' },
-    { label: 'O mně', route: '/o-mne' },
-    { label: 'Ceník', route: '/cenik' },
-    { label: 'Kontakt', route: '/kontakt' },
-  ];
+  // Source of truth lives in NavigationService — no duplication
+  protected readonly navItems: NavItem[] = this.navService.navItems;
 
   constructor() {
     this.router.events.pipe(

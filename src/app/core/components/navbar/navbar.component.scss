@@ -1,5 +1,6 @@
-/* Base layout and non-interactive styles are in the HTML via Tailwind.
-   Only complex interactive patterns remain here. */
+/* Layout and color utilities that appear on single elements stay as Tailwind in the HTML.
+   Classes used on multiple repeated elements (links in @for loops, 3 hamburger bars)
+   are defined once here with @apply so the HTML stays clean. */
 
 .navbar {
   transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -12,8 +13,17 @@
   }
 }
 
-/* Animated underline on nav links — requires ::after pseudo-element */
+/* Hamburger button */
+.navbar__hamburger {
+  @apply min-[900px]:hidden flex flex-col gap-[5px] cursor-pointer bg-transparent border-0 p-1;
+}
+
+/* Desktop nav link — @apply covers all Tailwind utilities so the @for loop is clean */
 .navbar__link {
+  @apply font-site-sans text-[11px] font-medium tracking-[0.14em] uppercase
+         no-underline text-site-muted transition-colors duration-200 relative;
+
+  /* Animated underline — requires ::after pseudo-element, cannot use Tailwind */
   &::after {
     content: '';
     position: absolute;
@@ -32,8 +42,9 @@
   }
 }
 
-/* Hamburger → X animation via nth-child transforms */
-.navbar__hamburger span {
+/* Hamburger bar — same class on all 3 spans, animations via nth-child */
+.hamburger-bar {
+  @apply block w-6 h-[1.5px] bg-site-text;
   transition: transform 0.3s ease, opacity 0.3s ease;
 
   &.open:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
@@ -41,7 +52,7 @@
   &.open:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 }
 
-/* Mobile menu slide from top */
+/* Mobile menu slide-in */
 .mobile-menu {
   transform: translateY(-100%);
   transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
@@ -49,7 +60,17 @@
   &.open { transform: translateY(0); }
 }
 
+/* Mobile nav link — @apply covers all Tailwind utilities so the @for loop is clean */
 .mobile-menu__link {
+  @apply font-site-serif text-[42px] font-light no-underline text-site-text transition-colors duration-200;
+
   &.active,
   &:hover { color: var(--color-accent); font-style: italic; }
+}
+
+/* Mobile CTA button */
+.mobile-menu__cta {
+  @apply mt-4 font-site-sans text-[12px] font-medium tracking-[0.14em] uppercase
+         no-underline text-site-text border border-site-text px-7 py-3
+         transition-colors duration-200 hover:bg-site-text hover:text-site-bg;
 }

@@ -1,1 +1,12 @@
-/* All styles migrated to Tailwind utility classes in footer.component.html */
+/* Classes used on repeated elements in @for loops are defined once here with @apply.
+   Layout / structural utilities stay as Tailwind in footer.component.html. */
+
+.footer__nav-link {
+  @apply text-[11px] font-medium tracking-[0.1em] uppercase no-underline
+         text-[rgba(245,240,232,0.6)] hover:text-site-bg transition-colors duration-200;
+}
+
+.footer__social-link {
+  @apply font-site-serif text-[14px] no-underline
+         text-[rgba(245,240,232,0.6)] hover:text-site-accent-light transition-colors duration-200;
+}

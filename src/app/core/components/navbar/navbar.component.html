@@ -1,3 +1,4 @@
+<!-- Styling for named classes lives in navbar.component.scss via @apply -->
 <header
   class="navbar fixed inset-x-0 top-0 z-[100] bg-site-bg border-b border-site-border"
   [class.scrolled]="isScrolled()"
@@ -17,32 +18,32 @@
       </div>
     </a>
 
-    <!-- Desktop nav -->
+    <!-- Desktop nav — link appearance fully defined by .navbar__link in SCSS -->
     <nav class="hidden min-[900px]:flex gap-9 items-center">
       @for (item of navItems; track item.route) {
         <a
           [routerLink]="item.route"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: item.route === '/' }"
-          class="navbar__link font-site-sans text-[11px] font-medium tracking-[0.14em] uppercase no-underline text-site-muted transition-colors duration-200 relative"
+          class="navbar__link"
         >{{ item.label }}</a>
       }
     </nav>
 
-    <!-- Hamburger -->
+    <!-- Hamburger — bar appearance defined by .hamburger-bar in SCSS -->
     <button
-      class="navbar__hamburger min-[900px]:hidden flex flex-col gap-[5px] cursor-pointer bg-transparent border-0 p-1"
+      class="navbar__hamburger"
       (click)="toggleMenu()"
       [attr.aria-expanded]="isMenuOpen()"
     >
-      <span class="block w-6 h-[1.5px] bg-site-text" [class.open]="isMenuOpen()"></span>
-      <span class="block w-6 h-[1.5px] bg-site-text" [class.open]="isMenuOpen()"></span>
-      <span class="block w-6 h-[1.5px] bg-site-text" [class.open]="isMenuOpen()"></span>
+      <span class="hamburger-bar" [class.open]="isMenuOpen()"></span>
+      <span class="hamburger-bar" [class.open]="isMenuOpen()"></span>
+      <span class="hamburger-bar" [class.open]="isMenuOpen()"></span>
     </button>
   </div>
 </header>
 
-<!-- Mobile menu -->
+<!-- Mobile menu — link appearance defined by .mobile-menu__link in SCSS -->
 <div
   class="mobile-menu fixed inset-0 z-[90] bg-site-bg flex items-center justify-center"
   [class.open]="isMenuOpen()"
@@ -53,12 +54,9 @@
         [routerLink]="item.route"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: item.route === '/' }"
-        class="mobile-menu__link font-site-serif text-[42px] font-light no-underline text-site-text transition-colors duration-200"
+        class="mobile-menu__link"
       >{{ item.label }}</a>
     }
-    <a
-      routerLink="/kontakt"
-      class="mt-4 font-site-sans text-[12px] font-medium tracking-[0.14em] uppercase no-underline text-site-text border border-site-text px-7 py-3 transition-colors duration-200 hover:bg-site-text hover:text-site-bg"
-    >Rezervovat →</a>
+    <a routerLink="/kontakt" class="mobile-menu__cta">Rezervovat →</a>
   </nav>
 </div>
